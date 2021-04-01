@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Floor Board</title>
+
+    <!-- Import some nice fonts from Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+
+    <link rel="stylesheet" href="styles.css">
+    <link id="content_area_styles" rel="stylesheet">
+
+    <script src="frontend_scripts.js"></script>
+
+    <script src="eel.js"></script>
+
+
+</head>
+<body onload="play_audio()">
+
+  <div style="margin: 50px;">
+    <p id="title" class="title"></p>
+    <p id="subtitle" class="subtitle" id="subtitle"></p>
+
+    <iframe id="iframe" src="idle/idle.html" class="content_frame" frameBorder="0"></iframe> <!-- debug: src="idle/idle.html" -->
+
+    <script src="frontend_scripts.js"></script>
+
+    <audio id="audio" control>
+        <source id="audio" src="wash_hands.mp3" type="audio/mpeg">
+    </audio>
+
+<!-- DEVELOPER DEBUGGER -->
+    <div id="debug_buttons" style="display: none;">
+        <p style="font-size: 30px;">Developer debugger:</p>
+
+        <button onclick="hide_buttons()" name="button">HIDE</button>
+
+        <button onclick="cc.smartAdd('hot_drink', 0, 1);" name="button">Add 1</button>
+        <button onclick="cc.smartAdd('donut', 1, 1);" name="button">Add 2</button>
+        <button onclick="cc.smartAdd('spicy_chicken', 2, 1);" name="button">Add 3</button>
+
+        <button onclick="cc.updateAverage('0', '1.34%');" name="button">Average</button>
+
+        <button onclick="cc.subtract_product('spicy_chicken', 0, 1);" name="button">Subtract</button>
+        <button onclick="cc.subtract_product('spicy_chicken', 0, 300);" name="button">Clear</button>
+
+        <button onclick="cc.display_results(
+        {1: ['first_container', 'FIRST', 'images/first_donut.png', 'Lane 1', '69'],
+        2: ['second_container', 'SECOND', 'images/second_donut.png', 'Lane 1', '65'],
+        3: ['third_container', 'THIRD', 'images/second_donut.png', 'Lane 1', '69']})" name="button">Internal Results</button>
+
+        <button onclick="cc.display_results(
+        {1: ['1<sup>st</sup>', 'HEMLOCK SQUARE', 'https://storage.googleapis.com/dotops.app/store_images/hemlock_square.jpg', '68', '3.45%', false],
+        2: ['2<sup>nd</sup>', 'LOWER SACKVILLE', 'https://storage.googleapis.com/dotops.app/store_images/hemlock_square.jpg', '62', '3.15%', true],
+        3: ['3<sup>rd</sup>', 'BEDFORD HIGHWAY', 'https://storage.googleapis.com/dotops.app/store_images/hemlock_square.jpg', '51', '3.08%', false]})" name="button">EXTERNAL Results</button>
+
+        <button onclick="load('integrated_counters/counters.html')">LOAD triple counters</button>
+        <button onclick="load('integrated_counters/dual_counters.html')">LOAD dual counters</button>
+
+        <button onclick="cc.addNames('Hemlock', 'Bedford', 'name2')">ADD names</button>
+
+        <button onclick="updateHeader('footer', '📱 &nbsp Go to <u>dotops.app</u> to configure an upsell game! &nbsp 🖱️')" name="button">Footer 1</button>
+        <button onclick="updateHeader('footer', '🏆 The results are in! &nbsp&nbsp 📅 Scores based on average sales are coming soon!')" name="button">Footer 2</button>
+
+        <button onclick="startProgress('refresh-bar-fill', '15')" name="button">Start Bar</button>
+        <button onclick="processProgress('refresh-bar-fill')" name="button">Process Bar</button>
+        <button onclick="resetProgress('refresh-bar-fill')" name="button">Reset Bar</button>
+    </div>
+
+
+  </div>
+
+  <div class="refresh-bar-border">
+    <div id="refresh-bar-fill"><p class="progress-label"></p></div>
+  </div>
+
+  <div class="info-area" onclick="toggle_debugger()">
+    <p id="footer">🌐 Go to <b>dotops.app</b> to configure an upsell game! &nbsp &nbsp 📁 Version 0.4.1</p>
+  </div>
+
+</body>
+</html>
