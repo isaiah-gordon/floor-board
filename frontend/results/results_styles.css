@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0px;
+  padding: 0px;
+  font-family: 'oswald';
+}
+
+.flexcontainer{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 650px;
+  width: 100%;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* FIRST CONTAINER */
+
+.first_container{
+  align-items: center;
+  position: relative;
+  z-index: -2;
+  padding: 0;
+  color: white;
+  height:100%;
+  width: 33%;
+  align-self: flex-end;
+  background-color: rgba(225, 235, 40, 0.3);
+}
+
+.first_container #place_label{
+  padding: 30px;
+  font-size: 150px;
+  font-family: 'Josefin Sans';
+  text-align: center;
+  color: yellow;
+}
+
+.first_container #result{
+  padding: 40px;
+  font-size:90px;
+  line-height: 200px;
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+}
+
+.first_container #product_image{
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 260px;
+}
+
+/* SECOND CONTAINER */
+
+.second_container{
+  height:80%;
+  width: 31%;
+  align-self: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: -2;
+  padding: 0;
+  height: 80%;
+  width: 32%;
+  color: white;
+  background-color: rgba(214, 212, 212, 0.3);
+}
+
+.second_container #place_label{
+  padding: 30px;
+  font-size: 110px;
+  font-family: 'Josefin Sans';
+  text-align: center;
+  color: grey;
+}
+
+.second_container #result{
+  padding: 40px;
+  font-size:90px;
+  line-height: 170px;
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+}
+
+.second_container #product_image{
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 260px;
+}
+
+/* THIRD CONTAINER */
+
+.third_container{
+  align-self: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: -2;
+  padding: 0;
+  height:60%;
+  width: 26%;
+  color: white;
+  background-color: rgba(171, 124, 58, 0.3);
+}
+
+.third_container #place_label{
+  padding: 30px;
+  font-size: 90px;
+  font-family: 'Josefin Sans';
+  text-align: center;
+  color: brown;
+}
+
+.third_container #result{
+  padding: 40px;
+  font-size:50px;
+  line-height: 110px;
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+}
+
+.third_container #product_image{
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 200px;
+}
+
+.count{
+  text-align: center;
+  font-size: 240%;
+}
