@@ -1,7 +1,7 @@
 import eel
 from datetime import datetime, timedelta, date
 import time
-from . import product_catalog, counter_module, result_module
+from . import result_module
 from gameMaster import product_catalog as pc
 import receiptMaster as rm
 import socketio as sio
