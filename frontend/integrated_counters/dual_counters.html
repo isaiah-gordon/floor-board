@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="counter_styles.css">
+    <link rel="stylesheet" href="dual_product_styles.css">
+
+    <script src="dual_counter_scripts.js"></script>
+
+    <!-- Import some nice fonts from Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+
+  </head>
+  <body>
+
+    <div class="flexcontainer">
+      <!-- Lane 1 -->
+      <div class="flexbox" style="width: 890px;">
+        <p id="0primary-label" class="primary-container-label">___</p>
+
+        <p class="dual-container-count"><span id="0count">0</span>TOTAL</p>
+        <p class="dual-container-average"><span id="0average">0.00%</span>AVERAGE</p>
+
+        <div id="0foreground" class="product_container"></div>
+        <div id="0background" class="product_container_background"></div>
+      </div>
+      <!-- Lane 2 -->
+      <div class="flexbox" style="width: 890px;">
+        <p id="1primary-label" class="primary-container-label">___</p>
+
+        <p class="dual-container-count"><span id="1count">0</span>TOTAL</p>
+        <p class="dual-container-average"><span id="1average">0.00%</span>AVERAGE</p>
+
+        <div id="1foreground" class="product_container"></div>
+        <div id="1background" class="product_container_background"></div>
+      </div>
+
+    </div>
+
+
+  </body>
+</html>

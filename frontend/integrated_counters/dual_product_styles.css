@@ -1,0 +1,143 @@
+.spicy_chicken{
+  padding: 0;
+  width: 156px;
+  height: 130px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-40px;
+  margin-left: -3px;
+  margin-right: -5px;
+    animation-name: spicy_chicken-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes spicy_chicken-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:156px; height: 130px; opacity: 100%;}
+}
+
+.donut{
+  padding: 0;
+  width:135px;
+  height: 113px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-37px;
+  margin-left: -3px;
+  margin-right: -5px;
+    animation-name: donut-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes donut-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:135px; height: 113px; opacity: 100%;}
+}
+
+.fry{
+  padding: 0;
+  width:94px;
+  height:141px;
+  position:relative;
+  bottom:5px;
+  margin-bottom:-40px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: fry-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes fry-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:94px; height:141px; opacity: 100%;}
+}
+
+.hashbrown{
+  padding: 0;
+  width:118px;
+
+  position:relative;
+  bottom:20px;
+  margin-bottom:-80px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: hashbrown-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes hashbrown-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:118px; height:157px; opacity: 100%;}
+}
+
+.muffin{
+  padding: 0;
+  width:157px;
+  height:160px;
+
+  position:relative;
+  bottom:0px;
+  margin-bottom:-55px;
+  margin-left: -20px;
+  margin-right: -10px;
+  animation-name: muffin-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes muffin-zoom {
+  0% {width: 50px; height: 50px; opacity: 0%;}
+  100% {width:157px; height:160px; opacity: 100%;}
+}
+
+.pie{
+  padding: 0;
+  width:106px;
+  height:240px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-90px;
+  margin-left: -4px;
+  margin-right: -4px;
+  animation-name: pie-rise;
+  animation-duration: 0.5s;
+}
+
+@keyframes pie-rise {
+  0% {margin-bottom:-289px; opacity: 30%;}
+  100% {margin-bottom:-90px; opacity: 100%;}
+}
+
+.cookie{
+  padding: 0;
+  width:135px;
+  height:110px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-36px;
+  margin-left: -4px;
+  margin-right: -4px;
+  animation-name: cookie-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes cookie-zoom {
+  0% {width:30px; height:30px; opacity: 30%;}
+  100% {width:135px; height:110px; opacity: 100%;}
+}
+
+.hot_drink{
+  padding: 0;
+  width:98px;
+  height: 170px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-28px;
+
+  animation-name: hot_drink-rise;
+  animation-duration: 0.5s;
+}
+
+@keyframes hot_drink-rise {
+  0% {margin-bottom:-100px; opacity: 0%;}
+  100% {margin-bottom:-28px; opacity: 100%;}
+}
