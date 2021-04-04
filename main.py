@@ -19,7 +19,7 @@ def initialize_frontend():
     # Initiate eel using "frontend" folder.
     eel.init("frontend")
     # Show "main.html" in eel window.
-    eel.start("main.html", block=False) # , cmdline_args=['--start-fullscreen']
+    eel.start("main.html", block=False, cmdline_args=['--start-fullscreen'])
     # Give eel 2 seconds to render "main.html"
     eel.sleep(4.0)
 

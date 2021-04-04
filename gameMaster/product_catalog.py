@@ -51,7 +51,7 @@ catalog = {
             'lower': 'fry',
             'lower_plural': 'fries',
             'upper': 'FRY',
-            'upper_plural': 'FRIES'
+            'upper_plural': 'LARGE FRIES'
         },
         'codes': {
             '239': 1,
