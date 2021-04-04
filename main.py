@@ -30,6 +30,8 @@ initialize_frontend()
 
 while True:
 
+    current_time = datetime.utcnow()
+
     # If it's the middle of the night: go idle for 4 hours.
     if current_time > current_time.replace(hour=2) or current_time < current_time.replace(hour=4):
         gameMaster.transition(
