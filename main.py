@@ -2,12 +2,13 @@ import eel
 import time
 import json
 import requests
-from gameMaster import gameMaster
-import socket_master
+from gameMaster import gameMaster, result_module, product_catalog
+# import socket_master
+import api_master as api
 from datetime import datetime, timedelta
 
 print('FLOOR BOARD')
-print('Version 0.4.1\n')
+print('Version 0.5.0\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -18,46 +19,63 @@ def initialize_frontend():
     # Initiate eel using "frontend" folder.
     eel.init("frontend")
     # Show "main.html" in eel window.
-    eel.start("main.html", block=False, cmdline_args=['--start-fullscreen'])
+    eel.start("main.html", block=False) # , cmdline_args=['--start-fullscreen']
     # Give eel 2 seconds to render "main.html"
-    eel.sleep(10.0)
-
-
-def check_connection(address):
-    try:
-        requests.get(address, timeout=5)
-        return True
-
-    except (requests.ConnectionError, requests.Timeout) as exception:
-        return False
+    eel.sleep(4.0)
 
 
 initialize_frontend()
-socket_master.connect(config['dotops_token'], config['store_number'])
+# socket_master.connect(config['dotops_token'], config['store_number'])
 
-sleep_start = datetime(2021, 1, 1, 23, 00).time()
-sleep_end = datetime(2021, 1, 1, 12, 00).time()
 
 while True:
 
-    eel.sleep(1)
-
-    if socket_master.control_dict['status'] != 'idle':
-
-        gameMaster.start_game(socket_master.control_dict, 55, config)
-
-        gameMaster.show_results(2400)
-
+    # If it's the middle of the night: go idle for 4 hours.
+    if current_time > current_time.replace(hour=2) or current_time < current_time.replace(hour=4):
         gameMaster.transition(
             load_file='idle/idle.html',
             title_text='',
             subtitle_text='',
             footer_text="""
-            🌐 &nbsp Go to <b>dotops.app</b> to configure an upsell game! &nbsp &nbsp 📁 &nbsp Version 0.4.1
-            """)
+                    🌐 &nbsp Go to <b>dotops.app</b> to configure an upsell game! &nbsp &nbsp 📁 &nbsp Version 0.5.0
+                    """)
+        eel.sleep(14400)
 
-    time_now = datetime.now().time()
-    if sleep_start < time_now < sleep_end:
-        print('Hello')
+    status = False
 
+    next_game = api.make_request('find_next_game')
+    print('Next game: ', next_game)
 
+    current_time = datetime.utcnow()
+
+    if next_game:
+
+        start_time = datetime.strptime(next_game['start_time'], '%H:%M:%S')
+        start_time = start_time.replace(year=current_time.year, month=current_time.month, day=current_time.day)
+        print('Next start time: ', start_time)
+
+        eel.sleep((start_time - current_time).total_seconds())
+
+        status = True
+
+    else:
+        eel.sleep(3600)
+
+    if status:
+
+        store_info = api.make_request('lookup_stores/{0}'.format(next_game['stores']))
+
+        result = gameMaster.start_game(next_game, store_info, 55, config)
+
+        gameMaster.transition('results/external_results.html',
+                   'GAME OVER!',
+                   product_catalog.catalog[next_game['product']]['names']['upper'] + ' upsell results:',
+                   '🏆 The results are in!')
+
+        result_module.process_external_results(
+            local_store=config['store_number'],
+            stores_list=next_game['stores'],
+            store_info=store_info,
+            total_sold=result[0],
+            transactions=result[1]
+        )

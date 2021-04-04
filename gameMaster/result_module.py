@@ -1,71 +1,67 @@
 import eel
 
 
-def process_results(product, results):
+def process_external_results(local_store, stores_list, store_info, total_sold, transactions):
 
-    sections = {'Lane 1': results[0], 'Lane 2': results[1], 'Counter': results[2]}
+    averages = {}
+    averages_list = []
+    for idx, result in enumerate(total_sold):
 
-    order_sections = sorted(sections, key=sections.get, reverse=True)
+        if len(stores_list) == 2 and idx == 2:
+            continue
 
-    count = 1
-    spec_dict = {}
-    first_place_tie = False
+        try:
+            average = (total_sold[result] / transactions['transactions{0}'.format(idx)]) * 100
+        except ZeroDivisionError:
+            average = 0
 
-    for section in order_sections:
-        if sections[section] == max(results):
-            if results.count(sections[section]) > 2:
-                spec_dict[count] = ['second_container', 'TIE', 'images/second_' + product + '.png', section, sections[section]]
-                first_place_tie = True
-            elif results.count(sections[section]) > 1:
-                spec_dict[count] = ['first_container', 'TIE', 'images/first_' + product + '.png', section, sections[section]]
-                first_place_tie = True
-            else:
-                spec_dict[count] = ['first_container', 'FIRST', 'images/first_' + product + '.png', section, sections[section]]
+        averages[stores_list[idx]] = average
+        averages_list.append(average)
 
-        elif sections[section] != min(results) or first_place_tie == True:
-            spec_dict[count] = ['second_container', 'SECOND', 'images/second_' + product + '.png', section, sections[section]]
+    store_names = []
+    for store in store_info:
+        store_names.append(store_info[store]['store_name'])
 
-        else:
-            if results.count(sections[section]) > 1:
-                spec_dict[count] = ['second_container', 'TIE', 'images/second_' + product + '.png', section, sections[section]]
-            else:
-                spec_dict[count] = ['third_container', 'THIRD', 'images/third_' + product + '.png', section, sections[section]]
-
-        count += 1
-
-    eel.display_results(spec_dict)
-
-
-def process_external_results(product, results):
-
-    sections = {'Lane 1': results[0], 'Lane 2': results[1], 'Counter': results[2]}
-
-    order_sections = sorted(sections, key=sections.get, reverse=True)
+    descending_averages = sorted(averages, key=averages.get, reverse=True)
 
     count = 1
     spec_dict = {}
     first_place_tie = False
 
-    for section in order_sections:
-        if sections[section] == max(results):
-            if results.count(sections[section]) > 2:
-                spec_dict[count] = ['second_container', 'TIE', 'images/second_' + product + '.png', section, sections[section]]
+    for idx, store in enumerate(descending_averages):
+
+        highlight = False
+        if local_store == store:
+            highlight = True
+
+        store_data = [
+            store_info[store]['store_name'],
+            store_info[store]['store_image'],
+            total_sold['total_sold{0}'.format(stores_list.index(store))],
+            str(round(averages[store], 2)) + '%',
+            highlight
+        ]
+
+        if averages[store] == max(averages.values()):
+            if averages_list.count(averages[store]) > 2:
+                spec_dict[count] = ['TIE']
                 first_place_tie = True
-            elif results.count(sections[section]) > 1:
-                spec_dict[count] = ['first_container', 'TIE', 'images/first_' + product + '.png', section, sections[section]]
+            elif averages_list.count(averages[store]) > 1:
+                spec_dict[count] = ['TIE']
                 first_place_tie = True
             else:
-                spec_dict[count] = ['first_container', 'FIRST', 'images/first_' + product + '.png', section, sections[section]]
+                spec_dict[count] = ['1<sup>st</sup>']
 
-        elif sections[section] != min(results) or first_place_tie == True:
-            spec_dict[count] = ['second_container', 'SECOND', 'images/second_' + product + '.png', section, sections[section]]
+        elif averages[store] != min(averages.values()) and averages[store] != max(averages.values()):
+            spec_dict[count] = ['2<sup>nd</sup>']
 
         else:
-            if results.count(sections[section]) > 1:
-                spec_dict[count] = ['second_container', 'TIE', 'images/second_' + product + '.png', section, sections[section]]
+            if averages_list.count(averages[store]) > 1:
+                spec_dict[count] = ['TIE']
             else:
-                spec_dict[count] = ['third_container', 'THIRD', 'images/third_' + product + '.png', section, sections[section]]
+                spec_dict[count] = ['3<sup>rd</sup>']
 
+        spec_dict[count] += store_data
         count += 1
 
     eel.display_results(spec_dict)
