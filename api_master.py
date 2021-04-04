@@ -7,7 +7,7 @@ config_file.close()
 
 
 def make_request(endpoint):
-    url = 'http://dotops.app/api/{0}'.format(endpoint)
+    url = 'https://dotops.app/api/{0}'.format(endpoint)
     token_header = {'token': config['dotops_token']}
 
     r = requests.get(url, headers=token_header)
@@ -25,9 +25,12 @@ def lookup_stores(store_index):
 
 
 def add_score(game_id, index, total_sold, transactions):
-    url = 'http://dotops.app/api/add_score/{0}'.format(game_id)
+    url = 'https://dotops.app/api/add_score/{0}'.format(game_id)
     token_header = {'token': config['dotops_token']}
 
     score_dict = {'score_index': index,'total_sold': total_sold, 'transactions': transactions}
 
     r = requests.post(url, headers=token_header, json=score_dict)
+
+
+print(make_request('get_score/2'))
