@@ -6,7 +6,7 @@ body {
   color: white;
   font-family: 'Josefin Sans';
   background-color: black;
-  background-image: url('mcdonalds_sign_background.jpg');
+  background-image: url('abstract_yellow_background.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   width: 1920px;
@@ -29,9 +29,13 @@ body {
   float:right;
 }
 
+.banner{
+  float:center;
+}
+
 .content_frame{
   width: 100%;
-  height:750px;
+  height:700px;
   cursor: none;
 }
 
@@ -65,15 +69,15 @@ div.info-area p {
 }
 
 .refresh-bar-border{
-  /* background-color: #181818b3; */
+  background-color: rgba(53, 53, 53, 0.37);
   width: 100%;
   position: absolute;
   bottom: 0;
-  margin-bottom: 75px;
+  margin-bottom: 70px;
 }
 
 #refresh-bar-fill{
-  background-color:#bf9000ff;
+  background-color:#c90000;
   height: 20px;
   width: 0%;
   animation: reset-animation 2s;
@@ -91,7 +95,7 @@ div.info-area p {
 }
 
 @keyframes process-animation {
-  0% {background-color:#bf9000ff; width: 100%;}
-  50% {background-color:#e0bb4bff; width: 100%;}
-  100% {background-color:#bf9000ff; width: 100%;}
+  0% {background-color:#c90000; width: 100%;} /*Dark yellow: #bf9000ff*/
+  50% {background-color:#fc0303; width: 100%;} /*Light yellow: #e0bb4bff*/
+  100% {background-color:#c90000; width: 100%;}
 }

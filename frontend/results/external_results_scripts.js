@@ -34,7 +34,7 @@ function display_results(result_specs){
 
       if (list[5] == true){
         for (var i = 0; i < row.length; i++) {
-          row[i].style.backgroundColor = "rgba(230, 234, 0, 0.29)";
+          row[i].style.backgroundColor = "rgba(25, 25, 25, 0.78)";
         }
       }
 

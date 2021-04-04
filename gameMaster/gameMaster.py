@@ -21,12 +21,13 @@ def add_names(name1, name2, name3):
 
 
 # This function condenses three eel functions often used in tandem.
-def transition(load_file, title_text, subtitle_text, footer_text):
+def transition(load_file, title_text, subtitle_text, footer_text, product_banner):
     eel.updateHeader('title', title_text)
     eel.updateHeader('subtitle', subtitle_text)
     eel.updateHeader('footer', footer_text)
     eel.load(load_file)
-    eel.sleep(3)
+    eel.updateHeader('banner', 'banners/{0}.png'.format(product_banner))
+    eel.sleep(1)
 
 
 # This function can add a certain amount of a certain product to the scoreboard.
@@ -64,9 +65,11 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
 
     # Transition to the integrated_counters frontend template. It's basically the scoreboard.
     transition('integrated_counters/{0}.html'.format(counters_template),
-               pc.catalog[game_info['product']]['names']['upper_plural']+'!',
-               'Who can sell the most?',
-               pc.catalog[game_info['product']]['footer'])
+               '',
+               '',
+               pc.catalog[game_info['product']]['footer'],
+               game_info['product']
+               )
 
     # If the server has provided names for the players: add them to the scoreboard.
 
@@ -231,7 +234,8 @@ def process_external_results(show_seconds_amount, game_info, store_info):
     transition('results/external_results.html',
                'GAME OVER!',
                pc.catalog[game_info['product']]['names']['upper'] + ' upsell results:',
-               '🏆 The results are in!')
+               '🏆 The results are in!',
+               '')
 
     result_module.process_external_results(game_info['product'], results)
     eel.sleep(5)

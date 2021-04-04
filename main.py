@@ -8,7 +8,7 @@ import api_master as api
 from datetime import datetime, timedelta
 
 print('FLOOR BOARD')
-print('Version 0.5.0\n')
+print('Version 0.5.1\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -38,9 +38,8 @@ while True:
             load_file='idle/idle.html',
             title_text='',
             subtitle_text='',
-            footer_text="""
-                    🌐 &nbsp Go to <b>dotops.app</b> to configure an upsell game! &nbsp &nbsp 📁 &nbsp Version 0.5.0
-                    """)
+            footer_text='Version 0.5.1',
+            product_banner='')
         eel.sleep(14400)
 
     status = False
@@ -69,10 +68,12 @@ while True:
 
         result = gameMaster.start_game(next_game, store_info, 55, config)
 
-        gameMaster.transition('results/external_results.html',
-                   'GAME OVER!',
-                   product_catalog.catalog[next_game['product']]['names']['upper'] + ' upsell results:',
-                   '🏆 The results are in!')
+        gameMaster.transition(
+            'results/external_results.html',
+            'GAME OVER!',
+            product_catalog.catalog[next_game['product']]['names']['upper'] + ' upsell results:',
+            '🏆 The results are in!',
+            '')
 
         result_module.process_external_results(
             local_store=config['store_number'],
