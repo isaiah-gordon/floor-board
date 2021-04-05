@@ -26,7 +26,7 @@ def transition(load_file, title_text, subtitle_text, footer_text, product_banner
     eel.updateHeader('subtitle', subtitle_text)
     eel.updateHeader('footer', footer_text)
     eel.load(load_file)
-    eel.updateHeader('banner', 'banners/{0}.png'.format(product_banner))
+    eel.update_banner('banners/{0}.png'.format(product_banner))
     eel.sleep(1)
 
 

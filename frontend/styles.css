@@ -73,12 +73,12 @@ div.info-area p {
   width: 100%;
   position: absolute;
   bottom: 0;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 }
 
 #refresh-bar-fill{
   background-color:#c90000;
-  height: 20px;
+  height: 30px;
   width: 0%;
   animation: reset-animation 2s;
   animation-fill-mode: forwards;

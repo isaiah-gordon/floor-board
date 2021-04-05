@@ -37,6 +37,12 @@ function updateHeader(id, text){
   subtitle.innerHTML = text;
 }
 
+eel.expose(update_banner)
+function update_banner(source){
+  var banner = document.getElementById('banner');
+  banner.src = source;
+}
+
 eel.expose(load)
 function load(html_file){
   document.getElementById('iframe').src=html_file;
