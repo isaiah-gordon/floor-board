@@ -3,7 +3,7 @@ import xml.dom.minidom
 import socketio
 import time
 
-sio = socketio.Client()
+# sio = socketio.Client()
 
 
 def login(address, username, password):
@@ -53,26 +53,17 @@ def download(address, session, file_name, start_date_time, end_date_time):
     xml_download.close()
 
 
-doc = None
-
-
 def count(file_name, product_code_index, id_exclusion_index, level_exclusion):
 
     exclude = []
     id_index = []
     transaction_amount = {'lane1': 0, 'lane2': 0, 'counter': 0}
 
-    def background_task():
-        global doc
-        doc = xml.dom.minidom.parse(file_name+'.xml')
-
-    sio.start_background_task(background_task)
-
-    sio.sleep(5)
+    doc = xml.dom.minidom.parse(file_name+'.xml')
 
     receipts = doc.getElementsByTagName('View')
 
-    resultDict = {'lane1': 0, 'lane2': 0, 'counter': 0}
+    result_dict = {'lane1': 0, 'lane2': 0, 'counter': 0}
 
     for receipt in receipts:
 
@@ -119,13 +110,13 @@ def count(file_name, product_code_index, id_exclusion_index, level_exclusion):
                     y = (int(product_code_index[product_code]))
                     try:
                         if cod[0].getAttribute('number') == '1':
-                            resultDict['lane1'] += (x * y)
+                            result_dict['lane1'] += (x * y)
 
                         elif cod[0].getAttribute('number') == '2':
-                            resultDict['lane2'] += (x * y)
+                            result_dict['lane2'] += (x * y)
 
                     except IndexError:
-                        resultDict['counter'] += (x * y)
+                        result_dict['counter'] += (x * y)
 
-    return resultDict, id_index, transaction_amount
+    return result_dict, id_index, transaction_amount
 
