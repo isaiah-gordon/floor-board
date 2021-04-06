@@ -101,8 +101,9 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
     transaction_amounts = {'lane1': 0, 'lane2': 0, 'counter': 0}
     total_counts = {'lane1': 0, 'lane2': 0, 'counter': 0}
 
-    # Assign five minute time delta using datetime module.
+    # Assign ten minute time delta using datetime module.
     fiveMinute = timedelta(minutes=5)
+    tenMinute = timedelta(minutes=10)
 
     previous_external_result = {}
 
@@ -118,7 +119,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         eel.processProgress('refresh-bar-fill')
 
         now = datetime.now()
-        start = now - fiveMinute
+        start = now - tenMinute
         end = now
 
         # Use the receiptMaster module to retrieve data based on var "start" and var "end"
