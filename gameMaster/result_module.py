@@ -55,6 +55,9 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         elif averages[store] != min(averages.values()) and averages[store] != max(averages.values()):
             spec_dict[count] = ['2<sup>nd</sup>']
 
+        elif averages[store] == min(averages.values()) and len(averages) == 2:
+            spec_dict[count] = ['2<sup>nd</sup>']
+
         else:
             if averages_list.count(averages[store]) > 1:
                 spec_dict[count] = ['TIE']
