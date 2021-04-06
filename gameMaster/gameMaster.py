@@ -82,7 +82,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
 
     add_names(*store_names)
 
-    eel.sleep(2)
+    eel.sleep(5)
 
     obj_end_time = datetime.strptime(game_info['end_time'], '%H:%M:%S').time()
     now = datetime.utcnow().time()

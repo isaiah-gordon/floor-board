@@ -37,6 +37,12 @@ function updateHeader(id, text){
   subtitle.innerHTML = text;
 }
 
+eel.expose(get_header)
+function get_header(id){
+  var subtitle = document.getElementById(id);
+  return subtitle.textContent;
+}
+
 eel.expose(update_banner)
 function update_banner(source){
   var banner = document.getElementById('banner');

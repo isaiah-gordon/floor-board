@@ -119,4 +119,3 @@ def count(file_name, product_code_index, id_exclusion_index, level_exclusion):
                         result_dict['counter'] += (x * y)
 
     return result_dict, id_index, transaction_amount
-

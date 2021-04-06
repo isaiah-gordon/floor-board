@@ -36,7 +36,7 @@
     <div id="debug_buttons" style="display: none;">
         <p style="font-size: 30px;">Developer debugger:</p>
 
-        <button onclick="hide_buttons()" name="button">HIDE</button>
+        <button onclick="get_header('footer')" name="button">Get header</button>
 
         <button onclick="cc.smartAdd('donut', 0, 1);" name="button">Add 1</button>
         <button onclick="cc.smartAdd('donut', 1, 1);" name="button">Add 2</button>
@@ -65,7 +65,7 @@
         <button onclick="cc.addNames('Hemlock', 'Bedford', 'name2')">ADD names</button>
 
         <button onclick="updateHeader('footer', '📱 &nbsp Go to <u>dotops.app</u> to configure an upsell game! &nbsp 🖱️')" name="button">Footer 1</button>
-        <button onclick="updateHeader('footer', '🏆 The results are in! &nbsp&nbsp 📅 Scores based on average sales are coming soon!')" name="button">Footer 2</button>
+        <button onclick="updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')" name="button">Footer 2</button>
 
         <button onclick="startProgress('refresh-bar-fill', '15')" name="button">Start Bar</button>
         <button onclick="processProgress('refresh-bar-fill')" name="button">Process Bar</button>
