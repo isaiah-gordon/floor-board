@@ -8,10 +8,10 @@ config = json.load(config_file)
 config_file.close()
 
 
-def safe_request(*args, **kwargs):
+def safe_request(method, *args, **kwargs):
 
     try:
-        r = requests.get(*args, **kwargs)
+        r = requests.request(method, *args, **kwargs)
 
     except requests.exceptions.ConnectionError:
         request_connection = False
@@ -19,7 +19,7 @@ def safe_request(*args, **kwargs):
         eel.updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')
         while request_connection is False:
             try:
-                r = requests.get(*args, **kwargs)
+                r = requests.request(method, *args, **kwargs)
                 request_connection = True
 
             except requests.exceptions.ConnectionError:
@@ -36,7 +36,7 @@ def make_request(endpoint):
     token_header = {'token': config['dotops_token']}
 
     # r = requests.get(url, headers=token_header)
-    r = safe_request(url, headers=token_header)
+    r = safe_request('GET', url, headers=token_header)
 
     if not r.text:
         return None
@@ -57,6 +57,6 @@ def add_score(game_id, index, total_sold, transactions):
     score_dict = {'score_index': index,'total_sold': total_sold, 'transactions': transactions}
 
     # requests.post(url, headers=token_header, json=score_dict)
-    safe_request(url, headers=token_header, json=score_dict)
+    safe_request('POST', url, headers=token_header, json=score_dict)
 
     return True
