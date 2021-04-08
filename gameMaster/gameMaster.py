@@ -220,7 +220,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         # Run the refresh progress bar for a desired amount of seconds.
 
         second_now = datetime.now().second
-        wait_seconds = 50 - second_now
+        wait_seconds = 50
 
         eel.startProgress('refresh-bar-fill', wait_seconds)
 
