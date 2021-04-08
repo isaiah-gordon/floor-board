@@ -119,6 +119,8 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         eel.processProgress('refresh-bar-fill')
 
         now = datetime.now()
+        print(now)
+
         start = now - tenMinute
         end = now
 
@@ -137,6 +139,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         # Assign var "result" to the first return from raw_result.
         # The first return is a dictionary of the count results ( e.g. {'lane1': 10, 'lane2': 5, 'counter': 2} )
         result = raw_result[0]
+        print('Raw result: ', result)
 
         # Append the second return from raw_result to the "exclusion" list.
         # The second return is a list of receipt IDs that were read.
@@ -156,6 +159,8 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         sync_second(3)
 
         latest_scores = api.make_request('get_score/{0}'.format(game_info['id']))
+        print('Latest scores: ', latest_scores)
+        print('\n')
 
         latest_sold = {}
         latest_transactions = {}

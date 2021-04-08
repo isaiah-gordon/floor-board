@@ -15,8 +15,8 @@ def safe_request(method, *args, **kwargs):
 
     except requests.exceptions.ConnectionError:
         request_connection = False
-        normal_footer = eel.get_header('footer')
-        eel.updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')
+        # normal_footer = eel.get_header('footer')
+        # eel.updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')
         while request_connection is False:
             try:
                 r = requests.request(method, *args, **kwargs)
@@ -26,7 +26,7 @@ def safe_request(method, *args, **kwargs):
                 print('not connected!')
                 time.sleep(10)
 
-        eel.updateHeader('footer', normal_footer)
+        # eel.updateHeader('footer', normal_footer)
 
     return r
 
