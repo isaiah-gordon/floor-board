@@ -76,18 +76,18 @@
 }
 
 #store{
-  width: 56%;
+  width: 52%;
 }
 
 #store .row p{
   font-size: 70px;
 }
 
-#total{
-  width: 12%;
+#transactions{
+  width: 14%;
 }
 
-#average{
-  width: 18%;
+#total{
+  width: 20%;
   font-weight: bold;
 }

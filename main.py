@@ -8,7 +8,7 @@ import api_master as api
 from datetime import datetime, timedelta
 
 print('FLOOR BOARD')
-print('Version 0.5.1\n')
+print('Version 0.5.2\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -38,7 +38,7 @@ while True:
             load_file='idle/idle.html',
             title_text='',
             subtitle_text='',
-            footer_text='Version 0.5.1',
+            footer_text='&#128194; Version 0.5.2',
             product_banner='')
         eel.sleep(14400)
 

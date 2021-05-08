@@ -74,9 +74,9 @@ function product_add(product, a1, a2) {
   cc.smartAdd(product, a1, a2)
 }
 
-eel.expose(update_average)
-function update_average(section, average){
-  cc.updateAverage(section, average)
+eel.expose(update_transactions)
+function update_transactions(section, transactions){
+  cc.updateTransactions(section, transactions)
 }
 
 eel.expose(subtract_product)

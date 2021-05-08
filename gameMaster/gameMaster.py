@@ -204,13 +204,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
             if section_index_count == 2 and len(game_info['stores']) == 2:
                 continue
 
-            try:
-                average = (latest_sold['total_sold{0}'.format(section_index_count)] / latest_transactions[result]) * 100
-
-            except ZeroDivisionError:
-                average = 0
-
-            eel.update_average(str(section_index_count), (str(round(average, 1)) + '%'))
+            eel.update_transactions(str(section_index_count), latest_transactions['total_transactions{0}'.format(section_index_count)])
             section_index_count += 1
 
             eel.sleep(0.2)

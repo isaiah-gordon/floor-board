@@ -40,13 +40,13 @@
 
 .dual-container-average{
   line-height: 20px;
-  font-size: 90px;
-  padding-left: 30px;
+  font-size: 40px;
+  padding-left: 50px;
 }
 
 .dual-container-average span{
-  font-size: 100px;
-  padding: 50px;
+  font-size: 70px;
+  padding: 30px;
 }
 
 /* TRIPLE container text */
@@ -64,13 +64,13 @@
 
 .container-average{
   line-height: 20px;
-  font-size: 50px;
-  padding-left: 30px;
+  font-size: 40px;
+  padding-left: 50px;
 }
 
 .container-average span{
-  font-size: 80px;
-  padding: 50px;
+  font-size: 60px;
+  padding: 30px;
 }
 
 /* FLEX CONTAINER */

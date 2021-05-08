@@ -55,7 +55,7 @@ function subtract_product(product, section, amount){
 }
 
 eel.expose(smartAdd)
-function smartAdd(product, section, amount, average){
+function smartAdd(product, section, amount){
   var added = 0;
   while (added < amount) {
     if (counts[section]>=product_specs[product]['background']) {
@@ -72,8 +72,8 @@ function smartAdd(product, section, amount, average){
   }
 }
 
-function updateAverage(section, average){
-  document.getElementById(section+'average').innerHTML = average;
+function updateTransactions(section, transactions){
+  document.getElementById(section+'transactions').innerHTML = transactions;
 }
 
 function addNames(name0, name1, name2){

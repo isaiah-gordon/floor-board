@@ -21,16 +21,16 @@ function display_results(result_specs){
       var rank = document.getElementById(spec_count + '-rank')
       var store = document.getElementById(spec_count + '-store')
       var image = document.getElementById(spec_count + '-image')
+      var transactions = document.getElementById(spec_count + '-transactions')
       var total = document.getElementById(spec_count + '-total')
-      var average = document.getElementById(spec_count + '-average')
 
       list = result_specs[spec_count]
 
       rank.innerHTML = list[0];
       store.innerHTML = list[1];
       image.src = list[2]
-      total.innerHTML = list[3]
-      average.innerHTML = list[4]
+      transactions.innerHTML = list[3]
+      total.innerHTML = list[4]
 
       if (list[5] == true){
         for (var i = 0; i < row.length; i++) {

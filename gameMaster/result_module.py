@@ -3,32 +3,29 @@ import eel
 
 def process_external_results(local_store, stores_list, store_info, total_sold, transactions):
 
-    averages = {}
-    averages_list = []
+    scores = {}  # averages
+    scores_list = []  # averages_list
     for idx, result in enumerate(total_sold):
 
         if len(stores_list) == 2 and idx == 2:
             continue
 
-        try:
-            average = (total_sold[result] / transactions['transactions{0}'.format(idx)]) * 100
-        except ZeroDivisionError:
-            average = 0
+        x = total_sold['total_sold{0}'.format(idx)]
 
-        averages[stores_list[idx]] = average
-        averages_list.append(average)
+        scores[stores_list[idx]] = x
+        scores_list.append(x)
 
     store_names = []
     for store in store_info:
         store_names.append(store_info[store]['store_name'])
 
-    descending_averages = sorted(averages, key=averages.get, reverse=True)
+    descending_scores = sorted(scores, key=scores.get, reverse=True)
 
     count = 1
     spec_dict = {}
     first_place_tie = False
 
-    for idx, store in enumerate(descending_averages):
+    for idx, store in enumerate(descending_scores):
 
         highlight = False
         if local_store == store:
@@ -37,29 +34,29 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         store_data = [
             store_info[store]['store_name'],
             store_info[store]['store_image'],
-            total_sold['total_sold{0}'.format(stores_list.index(store))],
-            str(round(averages[store], 2)) + '%',
+            str(transactions['transactions{0}'.format(stores_list.index(store))]),
+            scores[store],
             highlight
         ]
 
-        if averages[store] == max(averages.values()):
-            if averages_list.count(averages[store]) > 2:
+        if scores[store] == max(scores.values()):
+            if scores_list.count(scores[store]) > 2:
                 spec_dict[count] = ['TIE']
                 first_place_tie = True
-            elif averages_list.count(averages[store]) > 1:
+            elif scores_list.count(scores[store]) > 1:
                 spec_dict[count] = ['TIE']
                 first_place_tie = True
             else:
                 spec_dict[count] = ['1<sup>st</sup>']
 
-        elif averages[store] != min(averages.values()) and averages[store] != max(averages.values()):
+        elif scores[store] != min(scores.values()) and scores[store] != max(scores.values()):
             spec_dict[count] = ['2<sup>nd</sup>']
 
-        elif averages[store] == min(averages.values()) and len(averages) == 2:
+        elif scores[store] == min(scores.values()) and len(scores) == 2:
             spec_dict[count] = ['2<sup>nd</sup>']
 
         else:
-            if averages_list.count(averages[store]) > 1:
+            if scores_list.count(scores[store]) > 1:
                 spec_dict[count] = ['TIE']
             else:
                 spec_dict[count] = ['3<sup>rd</sup>']

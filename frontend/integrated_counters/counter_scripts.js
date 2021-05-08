@@ -72,8 +72,8 @@ function smartAdd(product, section, amount){
   }
 }
 
-function updateAverage(section, average){
-  document.getElementById(section+'average').innerHTML = average;
+function updateTransactions(section, transactions){
+  document.getElementById(section+'transactions').innerHTML = transactions;
 }
 
 function addNames(name0, name1, name2){
