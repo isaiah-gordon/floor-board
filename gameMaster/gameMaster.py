@@ -204,7 +204,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
             if section_index_count == 2 and len(game_info['stores']) == 2:
                 continue
 
-            eel.update_transactions(str(section_index_count), latest_transactions['total_transactions{0}'.format(section_index_count)])
+            eel.update_transactions(str(section_index_count), latest_transactions['transactions{0}'.format(section_index_count)])
             section_index_count += 1
 
             eel.sleep(0.2)
