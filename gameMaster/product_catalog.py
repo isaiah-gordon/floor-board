@@ -67,6 +67,30 @@ catalog = {
 
         },
 
+    # FRIES FOR RMHC
+    'rmhc_fry': {
+        'names': {
+            'lower': 'RMHC fry',
+            'lower_plural': 'RMHC fries',
+            'upper': 'RMHC FRY',
+            'upper_plural': 'RMHCAd FRIES'
+        },
+        'codes': {
+            '12': 1,     # M FRY
+            '11810': 1,  # M FRY RV
+            '239': 1,    # L FRY
+            '13525': 1,  # POUTINE OPT VM
+            '13524': 1,  # POUTINE OPT
+            '11811': 1,  # L FRY RV
+            '13526': 1   # POUTINE OPT RV
+            },
+
+        'level_exclusion': False,
+        'footer': '&#128106; &#127969; McDonald\'s will donate a portion of proceeds to RMHC Atlantic! &#127839; &#128149;'
+
+
+        },
+
     #PIE
     'pie': {
         'names': {

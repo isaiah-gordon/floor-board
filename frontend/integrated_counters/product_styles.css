@@ -52,6 +52,24 @@
   100% {width:104px; height:151px; opacity: 100%;}
 }
 
+.rmhc_fry{
+  padding: 0;
+  width:55px;
+  height:90px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-40px;
+  margin-left: -8px;
+  margin-right: -8px;
+  animation-name: rmhc_fry-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes rmhc_fry-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:55px; height:90px; opacity: 100%;}
+}
+
 .hashbrown{
   padding: 0;
   width:118px;

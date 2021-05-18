@@ -6,6 +6,7 @@ product_specs = {
   'spicy_chicken': {'multi': false, 'back_stack': true, 'foreground': 8, 'background': 32},
   'donut': {'multi': donutArray, 'back_stack': false, 'foreground': 10, 'background': 45},
   'fry': {'multi': false, 'back_stack': true, 'foreground': 14, 'background': 49},
+  'rmhc_fry': {'multi': false, 'back_stack': true, 'foreground': 45, 'background': 195},
   'hashbrown': {'multi': false, 'back_stack': true, 'foreground': 12, 'background': 48},
   'muffin': {'multi': muffinArray, 'back_stack': true, 'foreground': 10, 'background': 35},
   'pie': {'multi': false, 'back_stack': true, 'foreground': 6, 'background': 30},
