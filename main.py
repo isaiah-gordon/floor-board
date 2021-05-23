@@ -1,11 +1,8 @@
 import eel
-import time
 import json
-import requests
 from gameMaster import gameMaster, result_module, product_catalog
-# import socket_master
 import api_master as api
-from datetime import datetime, timedelta
+from datetime import datetime
 
 print('FLOOR BOARD')
 print('Version 0.5.2\n')
@@ -66,7 +63,7 @@ while True:
 
         store_info = api.make_request('lookup_stores/{0}'.format(next_game['stores']))
 
-        result = gameMaster.start_game(next_game, store_info, 55, config)
+        result = gameMaster.start_game(next_game, store_info, 50, config)
 
         gameMaster.transition(
             'results/external_results.html',

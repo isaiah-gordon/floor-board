@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-import eel
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -54,7 +53,7 @@ def add_score(game_id, index, total_sold, transactions):
     url = 'https://dotops.app/api/add_score/{0}'.format(game_id)
     token_header = {'token': config['dotops_token']}
 
-    score_dict = {'score_index': index,'total_sold': total_sold, 'transactions': transactions}
+    score_dict = {'score_index': index, 'total_sold': total_sold, 'transactions': transactions}
 
     # requests.post(url, headers=token_header, json=score_dict)
     safe_request('POST', url, headers=token_header, json=score_dict)

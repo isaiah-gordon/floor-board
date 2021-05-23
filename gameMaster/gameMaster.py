@@ -1,8 +1,8 @@
 import eel
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 import time
-from . import result_module
-from gameMaster import product_catalog as pc
+import result_module
+import product_catalog as pc
 import receiptMaster as rm
 # import socket_master
 import api_master as api
@@ -84,26 +84,14 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
 
     eel.sleep(5)
 
-    obj_end_time = datetime.strptime(game_info['end_time'], '%H:%M:%S').time()
-    now = datetime.utcnow().time()
-    seconds_until_end = round((datetime.combine(date.min, obj_end_time) - datetime.combine(date.min, now)).total_seconds())
-
-    # Depreciated progress bar. Delete if code runs without errors.
-    # eel.startProgress('goal-bar-fill', str(seconds_until_end))
-
     # Start an RMU session using the receiptMaster module.
     session = rm.login(store_config['rmu_address'], store_config['rmu_username'], store_config['rmu_password'])
 
     # Create a list to store excluded receipt IDs. This will help prevent the same receipt from being read twice.
     exclusion = []
 
-    # Create a dictionary to store the total transactions for each station. This will help calculate averages.
-    transaction_amounts = {'lane1': 0, 'lane2': 0, 'counter': 0}
-    total_counts = {'lane1': 0, 'lane2': 0, 'counter': 0}
-
     # Assign ten minute time delta using datetime module.
-    fiveMinute = timedelta(minutes=5)
-    tenMinute = timedelta(minutes=10)
+    ten_minute = timedelta(minutes=10)
 
     previous_external_result = {}
 
@@ -113,7 +101,6 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
     gain_sold = {}
 
     last_sold = {'total_sold0': 0, 'total_sold1': 0, 'total_sold2': 0, }
-    last_transactions = {}
 
     while True:
         eel.processProgress('refresh-bar-fill')
@@ -121,7 +108,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         now = datetime.now()
         print(now)
 
-        start = now - tenMinute
+        start = now - ten_minute
         end = now
 
         # Use the receiptMaster module to retrieve data based on var "start" and var "end"
@@ -204,7 +191,10 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
             if section_index_count == 2 and len(game_info['stores']) == 2:
                 continue
 
-            eel.update_transactions(str(section_index_count), latest_transactions['transactions{0}'.format(section_index_count)])
+            eel.update_transactions(
+                str(section_index_count),
+                latest_transactions['transactions{0}'.format(section_index_count)]
+            )
             section_index_count += 1
 
             eel.sleep(0.2)
@@ -218,12 +208,9 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
 
         # Run the refresh progress bar for a desired amount of seconds.
 
-        second_now = datetime.now().second
-        wait_seconds = 50
+        eel.startProgress('refresh-bar-fill', refresh_seconds)
 
-        eel.startProgress('refresh-bar-fill', wait_seconds)
-
-        time.sleep(wait_seconds)
+        time.sleep(refresh_seconds)
 
 
 def process_external_results(show_seconds_amount, game_info, store_info):

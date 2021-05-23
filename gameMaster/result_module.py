@@ -23,7 +23,7 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
 
     count = 1
     spec_dict = {}
-    first_place_tie = False
+    # first_place_tie = False
 
     for idx, store in enumerate(descending_scores):
 
@@ -42,10 +42,10 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         if scores[store] == max(scores.values()):
             if scores_list.count(scores[store]) > 2:
                 spec_dict[count] = ['TIE']
-                first_place_tie = True
+                # first_place_tie = True
             elif scores_list.count(scores[store]) > 1:
                 spec_dict[count] = ['TIE']
-                first_place_tie = True
+                # first_place_tie = True
             else:
                 spec_dict[count] = ['1<sup>st</sup>']
 

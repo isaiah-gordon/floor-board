@@ -1,18 +1,14 @@
 import requests
 import xml.dom.minidom
-import socketio
-import time
-
-# sio = socketio.Client()
 
 
 def login(address, username, password):
-    URL = address
-    LOGIN_ROUTE = 'Account/LogOn?ReturnUrl=%2f'
+    url = address
+    login_route = 'Account/LogOn?ReturnUrl=%2f'
 
-    HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
                              '(KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-               'Origin': URL, 'Referer': URL + LOGIN_ROUTE}
+               'Origin': url, 'Referer': url + login_route}
 
     s = requests.session()
 
@@ -21,9 +17,7 @@ def login(address, username, password):
         'Password': password
     }
 
-    login_req = s.post(URL + LOGIN_ROUTE, headers=HEADERS, data=login_payload)
-
-    cookies = login_req.cookies
+    s.post(url + login_route, headers=headers, data=login_payload)
 
     return s
 
@@ -49,13 +43,12 @@ def download(address, session, file_name, start_date_time, end_date_time):
     download_content = download_content.decode('latin-1')
 
     xml_download = open(file_name+'.xml', 'w')
-    n = xml_download.write(str(download_content))
+    xml_download.write(str(download_content))
     xml_download.close()
 
 
 def count(file_name, product_code_index, id_exclusion_index, level_exclusion):
 
-    exclude = []
     id_index = []
     transaction_amount = {'lane1': 0, 'lane2': 0, 'counter': 0}
 
