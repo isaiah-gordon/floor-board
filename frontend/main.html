@@ -29,14 +29,14 @@
     <script src="frontend_scripts.js"></script>
 
     <audio id="audio" control>
-        <source id="audio" src="wash_hands.mp3" type="audio/mpeg">
+        <source id="audio" src="new_wash_hands.mp3" type="audio/mp3">
     </audio>
 
 <!-- DEVELOPER DEBUGGER -->
     <div id="debug_buttons" style="display: none;">
         <p style="font-size: 30px;">Developer debugger:</p>
 
-        <button onclick="get_header('footer')" name="button">Get header</button>
+        <button onclick="load('idle/covid_safety.html')" name="button">LOAD COVID Safety</button>
 
         <button onclick="cc.smartAdd('rmhc_fry', 0, 1);" name="button">Add 1</button>
         <button onclick="cc.smartAdd('donut', 1, 1);" name="button">Add 2</button>
@@ -50,7 +50,7 @@
         <button onclick="load('results/external_results.html')">LOAD results</button>
 
         <button onclick="update_banner('banners/rmhc_fry.png')">display RMHC banner</button>
-        <button onclick="update_banner('banners/hashbrown.png')">display hashbrown banner</button>
+        <button onclick="update_banner('banners/covid_safety.png')">display COVID Safety banner</button>
         <button onclick="update_banner('banners/donut.png')">display donut banner</button>
         <button onclick="update_banner('')">hide banner</button>
 
@@ -64,7 +64,7 @@
 
         <button onclick="cc.addNames('Hemlock', 'Bedford', 'Sackville')">ADD names</button>
 
-        <button onclick="updateHeader('footer', '&#128106; &#127969; McDonald\'s will donate a portion of proceeds to RMHC Atlantic! &#127839; &#128149;')" name="button">Footer 1</button>
+        <button onclick="updateHeader('footer', 'Help prevent the spread of <b>COVID-19</b> and protect others. &#x1F637;')" name="button">Footer 1</button>
         <button onclick="updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')" name="button">Footer 2</button>
 
         <button onclick="startProgress('refresh-bar-fill', '15')" name="button">Start Bar</button>
@@ -82,7 +82,7 @@
   </div>
 
   <div class="info-area" onclick="toggle_debugger()">
-    <p id="footer">&#128194; Version 0.5.2</p>
+    <p id="footer">&#128194; Version 0.5.3</p>
   </div>
 
 </body>

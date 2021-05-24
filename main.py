@@ -5,7 +5,7 @@ import api_master as api
 from datetime import datetime
 
 print('FLOOR BOARD')
-print('Version 0.5.2\n')
+print('Version 0.5.3\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -21,9 +21,26 @@ def initialize_frontend():
     eel.sleep(4.0)
 
 
+def start_config_idle_type():
+    if config['idle_type'] == "covid_safety":
+        gameMaster.transition(
+            load_file='idle/covid_safety.html',
+            title_text='',
+            subtitle_text='',
+            footer_text='Help prevent the spread of <b>COVID-19</b> and protect others. &#x1F637;',
+            product_banner='covid_safety')
+    else:
+        gameMaster.transition(
+            load_file='idle/idle.html',
+            title_text='',
+            subtitle_text='',
+            footer_text='&#128194; Version 0.5.3',
+            product_banner='')
+
 initialize_frontend()
 # socket_master.connect(config['dotops_token'], config['store_number'])
 
+start_config_idle_type()
 
 while True:
 
@@ -31,12 +48,7 @@ while True:
 
     # If it's the middle of the night: go idle for 4 hours.
     if current_time.replace(hour=2) < current_time < current_time.replace(hour=4):
-        gameMaster.transition(
-            load_file='idle/idle.html',
-            title_text='',
-            subtitle_text='',
-            footer_text='&#128194; Version 0.5.2',
-            product_banner='')
+        start_config_idle_type()
         eel.sleep(14400)
 
     status = False

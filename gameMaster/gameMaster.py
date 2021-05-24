@@ -1,8 +1,8 @@
 import eel
 from datetime import datetime, timedelta
 import time
-import result_module
-import product_catalog as pc
+from . import result_module
+from . import product_catalog as pc
 import receiptMaster as rm
 # import socket_master
 import api_master as api
