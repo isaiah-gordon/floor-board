@@ -5,7 +5,7 @@ import api_master as api
 from datetime import datetime
 
 print('FLOOR BOARD')
-print('Version 0.5.3\n')
+print('Version 0.5.4\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -34,13 +34,14 @@ def start_config_idle_type():
             load_file='idle/idle.html',
             title_text='',
             subtitle_text='',
-            footer_text='&#128194; Version 0.5.3',
+            footer_text='&#128194; Version 0.5.4',
             product_banner='')
 
-initialize_frontend()
-# socket_master.connect(config['dotops_token'], config['store_number'])
 
+initialize_frontend()
 start_config_idle_type()
+
+recovery_mode = False
 
 while True:
 
@@ -51,14 +52,18 @@ while True:
         start_config_idle_type()
         eel.sleep(14400)
 
-    status = False
+    active_game = False
 
-    next_game = api.make_request('find_next_game')
+    current_game = api.make_request('find_game/current')
+    next_game = api.make_request('find_game/next')
     print('Next game: ', next_game)
 
     current_time = datetime.utcnow()
 
-    if next_game:
+    if current_game:
+        active_game = current_game
+
+    elif next_game:
 
         start_time = datetime.strptime(next_game['start_time'], '%H:%M:%S')
         start_time = start_time.replace(year=current_time.year, month=current_time.month, day=current_time.day)
@@ -66,27 +71,27 @@ while True:
 
         eel.sleep((start_time - current_time).total_seconds())
 
-        status = True
+        active_game = next_game
 
     else:
         eel.sleep(3600)
 
-    if status:
+    if active_game:
 
-        store_info = api.make_request('lookup_stores/{0}'.format(next_game['stores']))
+        store_info = api.make_request('lookup_stores/{0}'.format(active_game['stores']))
 
-        result = gameMaster.start_game(next_game, store_info, 50, config)
+        result = gameMaster.start_game(active_game, store_info, 50, config)
 
         gameMaster.transition(
             'results/external_results.html',
             'GAME OVER!',
-            product_catalog.catalog[next_game['product']]['names']['upper'] + ' upsell results:',
+            product_catalog.catalog[active_game['product']]['names']['upper'] + ' upsell results:',
             '🏆 The results are in!',
             '')
 
         result_module.process_external_results(
             local_store=config['store_number'],
-            stores_list=next_game['stores'],
+            stores_list=active_game['stores'],
             store_info=store_info,
             total_sold=result[0],
             transactions=result[1]

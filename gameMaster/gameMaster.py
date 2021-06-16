@@ -108,7 +108,20 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         now = datetime.now()
         print(now)
 
-        start = now - ten_minute
+        # Determine the start time for downloading receipts from a time period.
+        # If LESS than 40 receipts have been counted so far: the start period is the "start_time" from "game_info".
+        if len(exclusion) < 40:
+            utc_now = datetime.now()
+            start_time = datetime.strptime(game_info['start_time'], '%H:%M:%S')
+            start_time = start_time.replace(year=utc_now.year, month=utc_now.month, day=utc_now.day)
+
+            seconds_since_start = timedelta((utc_now - start_time).total_seconds())
+            start = now - seconds_since_start
+
+        # If MORE than 40 receipts have been counted so far: the start period is the current time subtract 10 minutes.
+        else:
+            start = now - ten_minute
+
         end = now
 
         # Use the receiptMaster module to retrieve data based on var "start" and var "end"
