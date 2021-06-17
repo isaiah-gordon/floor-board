@@ -1,5 +1,6 @@
 import eel
 from datetime import datetime, timedelta
+import pytz
 import time
 from . import result_module
 from . import product_catalog as pc
@@ -116,7 +117,10 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
             start_time = start_time.replace(year=utc_now.year, month=utc_now.month, day=utc_now.day)
 
             seconds_since_start = timedelta(seconds=((utc_now - start_time).total_seconds()))
-            start = now - seconds_since_start
+            utc_start = now - seconds_since_start
+
+            utc_obj = pytz.utc.localize(utc_start)
+            start = utc_obj.astimezone(pytz.timezone("America/Halifax"))
 
         # If MORE than 40 receipts have been counted so far: the start period is the current time subtract 10 minutes.
         else:
