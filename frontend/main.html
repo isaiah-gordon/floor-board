@@ -34,7 +34,12 @@
 
 <!-- DEVELOPER DEBUGGER -->
     <div id="debug_buttons" style="display: none;">
-        <p style="font-size: 30px;">Developer debugger:</p>
+        <p style="font-size: 30px;"><b>Developer Tools</b></p>
+
+        <button onclick="document.getElementById('audio').play();" name="button">TEST hand wash</button>
+
+        <button onclick="updateHeader('footer', '&#128565; <b>An ERROR occurred!</b> &nbsp&nbsp Attempting a recovery...')" name="button">Error Restart Footer</button>
+        <button onclick="updateHeader('footer', '&#128296; &nbsp <b>Something is wrong!</b> &nbsp&nbsp Scores may not be accurate. Please stand by.')" name="button">Tech Support Footer</button>
 
         <button onclick="load('idle/covid_safety.html')" name="button">LOAD COVID Safety</button>
 
@@ -64,14 +69,9 @@
 
         <button onclick="cc.addNames('Hemlock', 'Bedford', 'Sackville')">ADD names</button>
 
-        <button onclick="updateHeader('footer', 'Help prevent the spread of <b>COVID-19</b> and protect others. &#x1F637;')" name="button">Footer 1</button>
-        <button onclick="updateHeader('footer', '&#x1F4E1; &nbsp <b>Connection Error!</b> &nbsp&nbsp Trying to reconnect...')" name="button">Footer 2</button>
-
         <button onclick="startProgress('refresh-bar-fill', '15')" name="button">Start Bar</button>
         <button onclick="processProgress('refresh-bar-fill')" name="button">Process Bar</button>
         <button onclick="resetProgress('refresh-bar-fill')" name="button">Reset Bar</button>
-
-        <button onclick="document.getElementById('audio').play();" name="button">TEST hand wash</button>
     </div>
 
 

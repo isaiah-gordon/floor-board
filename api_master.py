@@ -49,8 +49,8 @@ def lookup_stores(store_index):
     return store_data
 
 
-def add_score(game_id, index, total_sold, transactions):
-    url = 'https://dotops.app/api/add_score/{0}'.format(game_id)
+def change_score(change_type, game_id, index, total_sold, transactions):
+    url = 'https://dotops.app/api/{0}_score/{1}'.format(change_type, game_id)
     token_header = {'token': config['dotops_token']}
 
     score_dict = {'score_index': index, 'total_sold': total_sold, 'transactions': transactions}

@@ -45,54 +45,70 @@ recovery_mode = False
 
 while True:
 
-    current_time = datetime.utcnow()
+    try:
+        current_time = datetime.utcnow()
 
-    # If it's the middle of the night: go idle for 4 hours.
-    if current_time.replace(hour=2) < current_time < current_time.replace(hour=4):
-        start_config_idle_type()
-        eel.sleep(14400)
+        # If it's the middle of the night: go idle for 4 hours.
+        if current_time.replace(hour=2) < current_time < current_time.replace(hour=4):
+            start_config_idle_type()
+            eel.sleep(14400)
 
-    active_game = False
+        active_game = False
 
-    current_game = api.make_request('find_game/current')
-    next_game = api.make_request('find_game/next')
-    print('Next game: ', next_game)
+        current_game = api.make_request('find_game/current')
+        next_game = api.make_request('find_game/next')
+        print('Next game: ', next_game)
 
-    current_time = datetime.utcnow()
+        current_time = datetime.utcnow()
 
-    if current_game:
-        active_game = current_game
+        if current_game:
+            active_game = current_game
 
-    elif next_game:
+        elif next_game:
 
-        start_time = datetime.strptime(next_game['start_time'], '%H:%M:%S')
-        start_time = start_time.replace(year=current_time.year, month=current_time.month, day=current_time.day)
-        print('Next start time: ', start_time)
+            start_time = datetime.strptime(next_game['start_time'], '%H:%M:%S')
+            start_time = start_time.replace(year=current_time.year, month=current_time.month, day=current_time.day)
+            print('Next start time: ', start_time)
 
-        eel.sleep((start_time - current_time).total_seconds())
+            eel.sleep((start_time - current_time).total_seconds())
 
-        active_game = next_game
+            active_game = next_game
 
-    else:
-        eel.sleep(3600)
+        else:
+            eel.sleep(3600)
 
-    if active_game:
+        if active_game:
 
-        store_info = api.make_request('lookup_stores/{0}'.format(active_game['stores']))
+            store_info = api.make_request('lookup_stores/{0}'.format(active_game['stores']))
 
-        result = gameMaster.start_game(active_game, store_info, 50, config)
+            result = gameMaster.start_game(active_game, store_info, 50, config)
+
+            gameMaster.transition(
+                'results/external_results.html',
+                'GAME OVER!',
+                product_catalog.catalog[active_game['product']]['names']['upper'] + ' upsell results:',
+                '🏆 The results are in!',
+                '')
+
+            result_module.process_external_results(
+                local_store=config['store_number'],
+                stores_list=active_game['stores'],
+                store_info=store_info,
+                total_sold=result[0],
+                transactions=result[1]
+            )
+
+    except Exception as e:
+        print('EXCEPTION ERROR: ')
+        print(e)
 
         gameMaster.transition(
-            'results/external_results.html',
-            'GAME OVER!',
-            product_catalog.catalog[active_game['product']]['names']['upper'] + ' upsell results:',
-            '🏆 The results are in!',
-            '')
+            load_file='idle/idle.html',
+            title_text='',
+            subtitle_text='',
+            footer_text='&#128565; <b>An ERROR occurred!</b> &nbsp&nbsp Attempting a recovery...',
+            product_banner='')
 
-        result_module.process_external_results(
-            local_store=config['store_number'],
-            stores_list=active_game['stores'],
-            store_info=store_info,
-            total_sold=result[0],
-            transactions=result[1]
-        )
+        eel.processProgress('refresh-bar-fill')
+
+        eel.sleep(120)

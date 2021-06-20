@@ -109,9 +109,11 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         now = datetime.now()
         print(now)
 
+        exclusion_length = len(exclusion)
+
         # Determine the start time for downloading receipts from a time period.
         # If LESS than 40 receipts have been counted so far: the start period is the "start_time" from "game_info".
-        if len(exclusion) < 40:
+        if exclusion_length < 40:
             utc_now = datetime.now()
             start_time = datetime.strptime(game_info['start_time'], '%H:%M:%S')
             start_time = start_time.replace(year=utc_now.year, month=utc_now.month, day=utc_now.day)
@@ -158,7 +160,10 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
 
         sync_second(0)
 
-        api.add_score(game_info['id'], local_index, local_sold, local_transactions)
+        if exclusion_length == 0:
+            api.change_score('update', game_info['id'], local_index, local_sold, local_transactions)
+
+        api.change_score('add', game_info['id'], local_index, local_sold, local_transactions)
 
         sync_second(3)
 
