@@ -163,7 +163,8 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         if exclusion_length == 0:
             api.change_score('update', game_info['id'], local_index, local_sold, local_transactions)
 
-        api.change_score('add', game_info['id'], local_index, local_sold, local_transactions)
+        else:
+            api.change_score('add', game_info['id'], local_index, local_sold, local_transactions)
 
         sync_second(3)
 
