@@ -3,6 +3,7 @@ const donutArray = ['apple-fritter.png','boston-cream.png','maple-caramel.png','
 const muffinArray = ['banana.png', 'carrot.png', 'fruit.png']
 
 product_specs = {
+  'vanilla_cone': {'multi': false, 'back_stack': true, 'foreground': 18, 'background': 80},
   'spicy_chicken': {'multi': false, 'back_stack': true, 'foreground': 8, 'background': 32},
   'donut': {'multi': donutArray, 'back_stack': false, 'foreground': 10, 'background': 45},
   'fry': {'multi': false, 'back_stack': true, 'foreground': 14, 'background': 49},

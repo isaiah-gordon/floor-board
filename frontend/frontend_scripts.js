@@ -16,6 +16,10 @@ function toggle_debugger(){
   }
 }
 
+function change_background(source){
+    document.body.style.backgroundImage = "url(" + source + ")";
+}
+
 eel.expose(startProgress)
 function startProgress(id, duration) {
     document.getElementById(id).style.animation="progress-animation "+duration+"s linear forwards";

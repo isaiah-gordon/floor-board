@@ -6,7 +6,7 @@ body {
   color: white;
   font-family: 'Josefin Sans';
   background-color: black;
-  background-image: url('abstract_yellow_background.jpg');
+  background-image: url('backgrounds/yellow_default.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   width: 1920px;

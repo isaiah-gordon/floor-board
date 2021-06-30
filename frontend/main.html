@@ -36,14 +36,18 @@
     <div id="debug_buttons" style="display: none;">
         <p style="font-size: 30px;"><b>Developer Tools</b></p>
 
+        <button onclick="change_background('backgrounds/yellow_default.jpg')" name="button">Yellow Background</button>
+        <button onclick="change_background('backgrounds/blue_default.jpg')" name="button">Blue Background</button>
+
         <button onclick="document.getElementById('audio').play();" name="button">TEST hand wash</button>
 
         <button onclick="updateHeader('footer', '&#128565; <b>An ERROR occurred!</b> &nbsp&nbsp Attempting a recovery...')" name="button">Error Restart Footer</button>
         <button onclick="updateHeader('footer', '&#128296; &nbsp <b>Something is wrong!</b> &nbsp&nbsp Scores may not be accurate. Please stand by.')" name="button">Tech Support Footer</button>
+        <button onclick="updateHeader('footer', '&#127846; Winner has the highest <b>U/100</b> &nbsp | &nbsp &#128270; <b>U/100</b> is vanilla cones sold per every 100 guests')" name="button">Test Footer</button>
 
         <button onclick="load('idle/covid_safety.html')" name="button">LOAD COVID Safety</button>
 
-        <button onclick="cc.smartAdd('rmhc_fry', 0, 1);" name="button">Add 1</button>
+        <button onclick="cc.smartAdd('vanilla_cone', 0, 1);" name="button">Add 1</button>
         <button onclick="cc.smartAdd('donut', 1, 1);" name="button">Add 2</button>
         <button onclick="cc.smartAdd('spicy_chicken', 2, 1);" name="button">Add 3</button>
 

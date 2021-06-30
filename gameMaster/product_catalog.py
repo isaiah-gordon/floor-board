@@ -1,5 +1,21 @@
 # These dictionaries define how many of a certain product is associated with a certain product number.
 catalog = {
+    # Vanilla Cone
+    'vanilla_cone': {
+        'names': {
+            'lower': 'Vanilla Cone',
+            'lower_plural': 'Vanilla Cones',
+            'upper': 'VANILLA CONE',
+            'upper_plural': 'VANILLA CONES'
+        },
+        'codes': {
+            '3762': 1,  # 5 OZ CONE VANILLA
+            '14885': 1,  # 5 OZ CONE VANILLA Regional
+        },
+        'level_exclusion': False,
+        'footer': '&#127846; Winner has the highest U/100 | &#129300; U/100 = vanilla cones sold per every 100 guests'
+    },
+
     # Spicy McChicken
     'spicy_chicken': {
         'names': {
@@ -13,8 +29,7 @@ catalog = {
             '14330': 1,  # Hab VM
             '14809': 1,  # Hab Reg
             '16510': 1,  # Szech
-            '16513': 1,  # Szech EVM
-
+            '16513': 1  # Szech EVM
         },
         'level_exclusion': False,
         'footer': '💬 &quot;Would you like to make that a spicy McChicken today?&quot; 🔥'

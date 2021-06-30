@@ -1,3 +1,21 @@
+.vanilla_cone{
+  padding: 0;
+  width:75px;
+  height: 125px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-40px;
+  margin-left: -6px;
+  margin-right: -4px;
+    animation-name: vanilla_cone-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes vanilla_cone-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:75px; height: 125px; opacity: 100%;}
+}
+
 .spicy_chicken{
   padding: 0;
   width:155px;
