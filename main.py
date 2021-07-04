@@ -41,8 +41,6 @@ def start_config_idle_type():
 initialize_frontend()
 start_config_idle_type()
 
-recovery_mode = False
-
 while True:
 
     try:
@@ -87,7 +85,7 @@ while True:
                 'results/external_results.html',
                 'GAME OVER!',
                 product_catalog.catalog[active_game['product']]['names']['upper'] + ' upsell results:',
-                '🏆 The results are in!',
+                '🏆 Winner has the highest <b>U/100</b> &nbsp | &nbsp &#128161; <b>U/100</b> is the amount of product sold for every 100 guests',
                 '')
 
             result_module.process_external_results(

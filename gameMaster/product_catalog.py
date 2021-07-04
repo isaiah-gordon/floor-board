@@ -13,7 +13,7 @@ catalog = {
             '14885': 1,  # 5 OZ CONE VANILLA Regional
         },
         'level_exclusion': False,
-        'footer': '&#127846; Winner has the highest U/100 | &#129300; U/100 = vanilla cones sold per every 100 guests'
+        'footer': '&#127846; Winner has the highest <b>U/100</b> &nbsp | &nbsp &#128161; <b>U/100</b> is vanilla cones sold per every 100 guests'
     },
 
     # Spicy McChicken

@@ -10,7 +10,7 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         if len(stores_list) == 2 and idx == 2:
             continue
 
-        x = total_sold['total_sold{0}'.format(idx)]
+        x = transactions['transactions{0}'.format(idx)]
 
         scores[stores_list[idx]] = x
         scores_list.append(x)
@@ -34,7 +34,7 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         store_data = [
             store_info[store]['store_name'],
             store_info[store]['store_image'],
-            str(transactions['transactions{0}'.format(stores_list.index(store))]),
+            str(total_sold['total_sold{0}'.format(stores_list.index(store))]),
             scores[store],
             highlight
         ]
