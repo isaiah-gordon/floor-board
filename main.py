@@ -5,7 +5,7 @@ import api_master as api
 from datetime import datetime
 
 print('FLOOR BOARD')
-print('Version 0.5.4\n')
+print('Version 0.5.5\n')
 
 config_file = open('config.json', 'r')
 config = json.load(config_file)
@@ -34,7 +34,7 @@ def start_config_idle_type():
             load_file='idle/idle.html',
             title_text='',
             subtitle_text='',
-            footer_text='&#128194; Version 0.5.4',
+            footer_text='&#128194; Version 0.5.5',
             product_banner='')
 
 

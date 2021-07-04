@@ -162,7 +162,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         usage_per_hundred = local_sold / (local_transactions / 100)
         rounded_usage_per_hundred = round(usage_per_hundred, 3)
 
-        sync_second(0)
+        # sync_second(0)
 
         if exclusion_length == 0:
             api.change_score('update', game_info['id'], local_index, local_sold, rounded_usage_per_hundred)
@@ -170,7 +170,7 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         else:
             api.change_score('add', game_info['id'], local_index, local_sold, rounded_usage_per_hundred)
 
-        sync_second(3)
+        # sync_second(3)
 
         latest_scores = api.make_request('get_score/{0}'.format(game_info['id']))
         print('Latest scores: ', latest_scores)
