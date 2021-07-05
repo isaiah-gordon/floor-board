@@ -159,16 +159,16 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
         local_transactions = sum(raw_result[2].values())
 
         # Calculate u/100 to send to server as transactions
-        usage_per_hundred = local_sold / (local_transactions / 100)
-        rounded_usage_per_hundred = round(usage_per_hundred, 3)
+        # usage_per_hundred = local_sold / (local_transactions / 100)
+        # rounded_usage_per_hundred = round(usage_per_hundred, 3)
 
         # sync_second(0)
 
         if exclusion_length == 0:
-            api.change_score('update', game_info['id'], local_index, local_sold, rounded_usage_per_hundred)
+            api.change_score('update', game_info['id'], local_index, local_sold, local_transactions)
 
         else:
-            api.change_score('add', game_info['id'], local_index, local_sold, rounded_usage_per_hundred)
+            api.change_score('add', game_info['id'], local_index, local_sold, local_transactions)
 
         # sync_second(3)
 
@@ -184,17 +184,21 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
                 continue
             latest_sold[score] = latest_scores[score]
 
+        latest_usage_per_hundred = {}
+        for idx, key in enumerate(latest_transactions):
+            try:
+                # Calculate u/100 to send to server as transactions
+                usage_per_hundred = latest_sold['total_sold{0}'.format(idx)] / (latest_transactions[key] / 100)
+                rounded_usage_per_hundred = round(usage_per_hundred, 3)
+            except ZeroDivisionError:
+                rounded_usage_per_hundred = 0
+
+            latest_usage_per_hundred['usage_per_hundred{0}'.format(str(idx))] = rounded_usage_per_hundred
+
         for result in latest_sold:
             gain_sold[result] = latest_sold[result] - last_sold[result]
 
         last_sold = latest_sold
-
-        # total_gained_result = {}
-        # for result in latest_external_result:
-        #     gain = latest_external_result[result] - previous_external_result[result]
-        #     total_gained_result.update({result: gain})
-        #
-        # previous_external_result.update(latest_external_result)
 
         # This while loop adds donuts to each section based on the "result" dictionary until all have been added.
         addon_count = 0
@@ -212,17 +216,15 @@ def start_game(game_info, store_info, refresh_seconds, store_config):
             addon_count += 1
             eel.sleep(0.6)
 
-        section_index_count = 0
-        for result in latest_transactions:
+        for section_index_count, key in enumerate(latest_transactions):
 
             if section_index_count == 2 and len(game_info['stores']) == 2:
                 continue
 
             eel.update_transactions(
                 str(section_index_count),
-                latest_transactions['transactions{0}'.format(section_index_count)]
+                latest_usage_per_hundred['usage_per_hundred{0}'.format(section_index_count)]
             )
-            section_index_count += 1
 
             eel.sleep(0.2)
 
