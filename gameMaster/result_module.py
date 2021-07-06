@@ -10,10 +10,12 @@ def process_external_results(local_store, stores_list, store_info, total_sold, t
         if len(stores_list) == 2 and idx == 2:
             continue
 
-        x = transactions['transactions{0}'.format(idx)]
+        # Calculate u/100 on the fly
+        usage_per_hundred = total_sold['total_sold{0}'.format(idx)] / (transactions['transactions{0}'.format(idx)] / 100)
+        rounded_usage_per_hundred = round(usage_per_hundred, 3)
 
-        scores[stores_list[idx]] = x
-        scores_list.append(x)
+        scores[str(stores_list[idx])] = rounded_usage_per_hundred
+        scores_list.append(rounded_usage_per_hundred)
 
     store_names = []
     for store in store_info:
