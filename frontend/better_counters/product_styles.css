@@ -1,0 +1,202 @@
+.tall_profile{
+  padding: 0;
+  width: 70px;
+  height: 140px;
+  position:relative;
+  bottom: 40px;
+  margin-bottom:-40px;
+    animation-name: tall_profile-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes tall_profile-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width: 70px; height: 140px; opacity: 100%;}
+}
+
+
+
+
+
+
+
+
+.vanilla_cone{
+  padding: 0;
+  width:75px;
+  height: 125px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-40px;
+  margin-left: -6px;
+  margin-right: -4px;
+    animation-name: vanilla_cone-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes vanilla_cone-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:75px; height: 125px; opacity: 100%;}
+}
+
+.spicy_chicken{
+  padding: 0;
+  width:155px;
+  height: 125px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-30px;
+  margin-left: -3px;
+  margin-right: -5px;
+    animation-name: spicy_chicken-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes spicy_chicken-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:155px; height: 125px; opacity: 100%;}
+}
+
+.donut{
+  padding: 0;
+  width:124px;
+  height: 107px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-30px;
+  margin-left: -3px;
+  margin-right: -5px;
+    animation-name: donut-zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes donut-zoom {
+  0% {width: 10px; height: 0px; opacity: 0%;}
+  100% {width:127px; height: 107px; opacity: 100%;}
+}
+
+.fry{
+  padding: 0;
+  width:104px;
+  height:151px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-50px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: fry-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes fry-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:104px; height:151px; opacity: 100%;}
+}
+
+.rmhc_fry{
+  padding: 0;
+  width:55px;
+  height:90px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-40px;
+  margin-left: -8px;
+  margin-right: -8px;
+  animation-name: rmhc_fry-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes rmhc_fry-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:55px; height:90px; opacity: 100%;}
+}
+
+.hashbrown{
+  padding: 0;
+  width:118px;
+
+  position:relative;
+  bottom:20px;
+  margin-bottom:-63px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: hashbrown-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes hashbrown-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:118px; height:157px; opacity: 100%;}
+}
+
+.muffin{
+  padding: 0;
+  width:138px;
+
+  position:relative;
+  bottom:20px;
+  margin-bottom:-45px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: muffin-zoom;
+  animation-duration: 0.5s;
+}
+
+@keyframes muffin-zoom {
+  0% {width: 20px; height: 10px; opacity: 0%;}
+  100% {width:138px; height:144px; opacity: 100%;}
+}
+
+.pie{
+  padding: 0;
+  width:106px;
+  height:240px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-89px;
+  margin-left: -4px;
+  margin-right: -4px;
+  animation-name: pie-rise;
+  animation-duration: 0.5s;
+}
+
+@keyframes pie-rise {
+  0% {margin-bottom:-289px; opacity: 30%;}
+  100% {margin-bottom:-89px; opacity: 100%;}
+}
+
+.cookie{
+  padding: 0;
+  width:125px;
+  height:104px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-29px;
+  margin-left: -4px;
+  margin-right: -4px;
+  animation-name: cookie-rise;
+  animation-duration: 0.5s;
+}
+
+@keyframes cookie-rise {
+  0% {margin-bottom:-100px; opacity: 30%;}
+  100% {margin-bottom:-29px; opacity: 100%;}
+}
+
+.hot_drink{
+  padding: 0;
+  width:104px;
+  height: 180px;
+  position:relative;
+  bottom:20px;
+  margin-bottom:-39px;
+  margin-left: -10px;
+  margin-right: -10px;
+  animation-name: hot_drink-rise;
+  animation-duration: 0.5s;
+}
+
+@keyframes hot_drink-rise {
+  0% {margin-bottom:-100px; opacity: 0%;}
+  100% {margin-bottom:-39px; opacity: 100%;}
+}
